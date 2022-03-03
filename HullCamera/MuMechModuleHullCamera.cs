@@ -539,8 +539,11 @@ namespace HullcamVDS
         [KSPEvent(guiActive = true, guiName = "#autoLOC_HULL_EVT_001")] //Activate Camera
         public void ActivateCamera()
         {
-            Activate();
-            Events["ActivateCamera"].guiName = camActive ? locDeactivateCamera : locActivateCamera;
+	    	if (camEnabled)
+	    	{
+                Activate();
+                Events["ActivateCamera"].guiName = camActive ? locDeactivateCamera : locActivateCamera;
+	    	}
         }
 
         [KSPEvent(guiActive = true, guiName = "#autoLOC_HULL_EVT_004")] //Disable Camera
@@ -572,7 +575,10 @@ namespace HullcamVDS
         [KSPAction("#autoLOC_HULL_EVT_001")] //Activate Camera
         public void ActivateCameraAction(KSPActionParam ap)
         {
-            Activate();
+			if (camEnabled)
+	    	{
+                Activate();
+	    	}
         }
 
         [KSPAction("#autoLOC_HULL_EVT_002")] //Deactivate Camera
